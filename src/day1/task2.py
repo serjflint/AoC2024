@@ -4,7 +4,7 @@ from src.common import utils
 
 
 def main() -> None:
-    a_arr, b_arr = utils.read()
+    a_arr, b_arr = utils.read_pairs()
     counts = collections.Counter(b_arr)
     res = sum(a * counts.get(a, 0) for a in a_arr)
     print(res)
