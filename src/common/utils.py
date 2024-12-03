@@ -24,3 +24,8 @@ def read_lists(filename: str = "input.txt") -> list[list[int]]:
             row = [int(val) for val in line.strip().split()]
             res.append(row)
     return res
+
+
+def read_text(filename: str = "input.txt") -> str:
+    with pathlib.Path(filename).open(encoding="utf-8") as stream:
+        return stream.read()
