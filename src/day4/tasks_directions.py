@@ -1,3 +1,5 @@
+"""Taken from Roman Elizarov's solution."""
+
 import itertools as it
 
 from src.common import utils
