@@ -29,3 +29,8 @@ def read_lists(filename: str = "input.txt") -> list[list[int]]:
 def read_text(filename: str = "input.txt") -> str:
     with pathlib.Path(filename).open(encoding="utf-8") as stream:
         return stream.read()
+
+
+def read_lines(filename: str = "input.txt") -> list[str]:
+    with pathlib.Path(filename).open(encoding="utf-8") as stream:
+        return stream.readlines()
