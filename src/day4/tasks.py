@@ -2,7 +2,6 @@ import typing as tp
 
 from src.common import utils
 
-
 MASKS = [
     [(0, 0), (-1, -1), (-2, -2), (-3, -3)],  # top-left
     [(0, 0), (0, -1), (0, -2), (0, -3)],  # top
@@ -22,7 +21,7 @@ def check_mask(field: list[str], pos: tuple[int, int], mask: list[tuple[int, int
         on_field = 0 <= pos_y + dy < len(field) and 0 <= pos_x + dx < len(field[pos_y + dy])
         if not on_field:
             break
-        if not field[pos_y + dy][pos_x + dx] == word[idx]:
+        if field[pos_y + dy][pos_x + dx] != word[idx]:
             break
     else:
         return True
@@ -52,6 +51,7 @@ MASKS_X_MAS = [
     [[(-1, 1), (0, 0), (1, -1)], [(1, 1), (0, 0), (-1, -1)]],  # SSMM
 ]
 WORD_X_MAS = "MAS"
+
 
 def yield_x_mas(field: list[str], pos: tuple[int, int]) -> tp.Iterator[str]:
     for mask1, mask2 in MASKS_X_MAS:
