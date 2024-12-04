@@ -22,17 +22,19 @@ def task1() -> int:
                 res += 1
     return res
 
+
 SLASHES = [[(-1, -1), (1, 1)], [(-1, 1), (1, -1)]]
+
 
 def task2() -> int:
     field = utils.read_lines()
     res = 0
     max_x, max_y = len(field[0]), len(field)
-    for pos_x, pos_y in it.product(range(1, max_x-1), range(1, max_y-1)):
+    for pos_x, pos_y in it.product(range(1, max_x - 1), range(1, max_y - 1)):
         if field[pos_y][pos_x] != "A":
             continue
         chars = [{field[pos_y + dir_y][pos_x + dir_x] for dir_x, dir_y in slash} for slash in SLASHES]
-        if chars[0] == chars[1] == {'M', 'S'}:
+        if chars[0] == chars[1] == {"M", "S"}:
             res += 1
     return res
 
