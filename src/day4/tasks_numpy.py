@@ -26,8 +26,9 @@ def task1() -> int:
     d = max(len(arr), len(arr[0]))
     for i in range(-d, d):
         res += count(np.diag(arr, i))
+    arr90 = np.rot90(arr)
     for i in range(-d, d):
-        res += count(np.diag(np.rot90(arr), i))
+        res += count(np.diag(arr90, i))
 
     return res
 
