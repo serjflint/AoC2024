@@ -53,12 +53,13 @@ def task2() -> int:
             continue
         while not is_ordered(update, rules):
             for a, b in itertools.permutations(update, 2):
-                if a==b: continue
+                if a == b:
+                    continue
                 pos_a, pos_b = update.index(a), update.index(b)
                 if pos_a < pos_b:
                     if b in rules and a in rules[b]:
                         update[pos_a], update[pos_b] = update[pos_b], update[pos_a]
-                elif pos_a > pos_b:
+                elif pos_a > pos_b:  # noqa: SIM102
                     if a in rules and b in rules[a]:
                         update[pos_a], update[pos_b] = update[pos_b], update[pos_a]
         middle = (len(update) - 1) // 2
