@@ -39,7 +39,7 @@ def task1() -> int:
     rules, updates = parse(utils.read_lines())
     res = 0
     for update in updates:
-        if not is_ordered(update, rules):
+        if is_ordered(update, rules):
             middle = (len(update) - 1) // 2
             res += update[middle]
     return res
