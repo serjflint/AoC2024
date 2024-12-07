@@ -1,5 +1,7 @@
 import pathlib
 
+import numpy as np
+
 
 def read_pairs(filename: str = "input.txt", *, length: int = 1000, sort: bool = True) -> tuple[list[int], list[int]]:
     a_arr, b_arr = [0] * length, [0] * length
@@ -34,3 +36,7 @@ def read_text(filename: str = "input.txt") -> str:
 def read_lines(filename: str = "input.txt") -> list[str]:
     with pathlib.Path(filename).open(encoding="utf-8") as stream:
         return stream.readlines()
+
+
+def read_arr(filename: str = "input.txt") -> np.array:
+    return np.array([list(line.strip()) for line in read_lines(filename)])
