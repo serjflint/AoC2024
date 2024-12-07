@@ -16,7 +16,7 @@ def gen_steps(arr: np.ndarray, pos: tuple[int, int]) -> tp.Iterator[tuple[int, i
     while True:
         dir_x, dir_y = MASKS[d]
         new_x, new_y = x + dir_x, y + dir_y
-        if new_x not in range(max_x) or new_y not in range(max_y):
+        if not (0 <= new_x < max_x and 0 <= new_y < max_y):
             break
         if arr[new_x, new_y] == "#":
             d = (d + 1) % 4
@@ -42,30 +42,36 @@ def task1() -> int:
 CYCLE_COUNTER = 4
 
 
-def task2() -> int:
-    arr = np.array([list(line.strip()) for line in utils.read_lines()])
+def task2(filename: str = 'input.txt') -> int:
+    arr = np.array([list(line.strip()) for line in utils.read_lines(filename)])
     pos_x, pos_y = np.argwhere(arr == "^")[0]
-    backup = np.copy(arr)
+    max_x, max_y = len(arr[0]), len(arr)
 
-    for x, y in gen_steps(arr, (pos_x, pos_y)):
-        arr[x, y] = "X"
-    choices = np.argwhere(arr == "X")
+    choices = {(x, y) for x, y in gen_steps(arr, (pos_x, pos_y))}
+    choices.discard((pos_x, pos_y))
+    blocks = {(x, y) for x, y in np.argwhere(arr == "#")}
 
     res = 0
     for obstacle in tqdm(choices):
-        if obstacle[0] == pos_x and obstacle[1] == pos_y:
-            continue
-
-        arr = np.copy(backup)
-        arr[obstacle[0], obstacle[1]] = "#"
-
+        d = 0
+        x, y = pos_x, pos_y
         counter = collections.defaultdict(int)
-        for x, y in gen_steps(arr, (pos_x, pos_y)):
-            arr[x, y] = "X"
-            counter[x, y] += 1
-            if counter[x, y] > CYCLE_COUNTER:
+        blocks.add(obstacle)
+        while True:
+            dir_x, dir_y = MASKS[d]
+            new_x, new_y = x + dir_x, y + dir_y
+            if not (0 <= new_x < max_x and 0 <= new_y < max_y):
+                break
+            if (new_x, new_y) in blocks:
+                d = (d + 1) % 4
+                continue
+            x, y = new_x, new_y
+            if (x, y, d) in counter:
                 res += 1
                 break
+            counter[x, y, d] = 1
+        blocks.discard(obstacle)
+
     return res
 
 
