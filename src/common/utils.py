@@ -1,6 +1,9 @@
 import pathlib
+import typing as tp
 
 import numpy as np
+
+_T = tp.TypeVar("_T")
 
 
 def read_pairs(filename: str = "input.txt", *, length: int = 1000, sort: bool = True) -> tuple[list[int], list[int]]:
@@ -40,3 +43,16 @@ def read_lines(filename: str = "input.txt") -> list[str]:
 
 def read_arr(filename: str = "input.txt") -> np.array:
     return np.array([list(line.strip()) for line in read_lines(filename)])
+
+
+def print_arr(arr: list[list[str]]) -> None:
+    print("\n".join(["".join(row) for row in arr]))
+    print()
+
+
+def where(arr: list[list[_T]], val: _T) -> tp.Iterator[tuple[int, int]]:
+    max_x, max_y = len(arr[0]), len(arr)
+    for x in range(max_x):
+        for y in range(max_y):
+            if arr[y][x] == val:
+                yield x, y

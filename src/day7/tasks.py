@@ -1,5 +1,7 @@
 import itertools as it
+
 from src.common import utils
+
 
 def read_test(line: str) -> tuple[int, list[int]]:
     left, right = line.split(":")
@@ -13,7 +15,7 @@ def task1() -> int:
     res = 0
     for line in lines:
         test, args = read_test(line)
-        for pr in it.product((0, 1), repeat=len(args)-1):
+        for pr in it.product((0, 1), repeat=len(args) - 1):
             val = args[0]
             for idx, op in enumerate(pr):
                 if op == 0:
