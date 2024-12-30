@@ -7,7 +7,7 @@ preview = true
 [lint]
 preview = true
 select = ["ALL"]
-ignore = ["COM812", "ISC001", "D103", "CPY001", "D100", "D104", "T201"]
+ignore = ["COM812", "ISC001", "D103", "CPY001", "D100", "D104", "T201", "D101"]
 
 [lint.pydocstyle]
 convention = "google"
