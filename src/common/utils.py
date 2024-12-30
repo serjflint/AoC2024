@@ -1,8 +1,6 @@
 import pathlib
 import typing as tp
 
-import numpy as np
-
 _T = tp.TypeVar("_T")
 
 
@@ -20,6 +18,10 @@ def read_pairs(filename: str = "input.txt", *, length: int = 1000, sort: bool = 
     return a_arr, b_arr
 
 
+def to_ints(line: str) -> list[int]:
+    return [int(val) for val in line.split()]
+
+
 def read_lists(filename: str = "input.txt") -> list[list[int]]:
     res = []
     with pathlib.Path(filename).open(encoding="utf-8") as stream:
@@ -27,8 +29,7 @@ def read_lists(filename: str = "input.txt") -> list[list[int]]:
             line = line.strip()  # noqa: PLW2901
             if not line:
                 continue
-            row = [int(val) for val in line.split()]
-            res.append(row)
+            res.append(to_ints(line))
     return res
 
 
@@ -52,10 +53,6 @@ def read_text(filename: str = "input.txt") -> str:
 def read_lines(filename: str = "input.txt") -> list[str]:
     with pathlib.Path(filename).open(encoding="utf-8") as stream:
         return stream.readlines()
-
-
-def read_arr(filename: str = "input.txt") -> np.array:
-    return np.array([list(line.strip()) for line in read_lines(filename)])
 
 
 def print_arr(arr: list[list[str]]) -> None:
