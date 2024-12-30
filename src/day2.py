@@ -2,6 +2,8 @@ import itertools
 
 from src.common import utils
 
+FILENAME = utils.with_suffix(__file__)
+
 
 def is_safe(report: list[int]) -> bool:
     jumps = [a - b for a, b in itertools.pairwise(report)]
@@ -12,8 +14,8 @@ def is_safe(report: list[int]) -> bool:
     return is_monotonic and at_least >= 1 and at_most <= 3  # noqa: PLR2004
 
 
-def task1() -> int:
-    reports = utils.read_lists()
+def task1(filename: str = FILENAME) -> int:
+    reports = utils.read_lists(filename)
     return sum(is_safe(report) for report in reports)
 
 
@@ -27,8 +29,8 @@ def problem_dampener(report: list[int]) -> bool:
     return False
 
 
-def task2() -> int:
-    reports = utils.read_lists()
+def task2(filename: str = FILENAME) -> int:
+    reports = utils.read_lists(filename)
     return sum(problem_dampener(report) for report in reports)
 
 

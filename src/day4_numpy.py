@@ -6,14 +6,16 @@ import numpy as np
 
 from src.common import utils
 
+FILENAME = utils.with_suffix(__file__)
+
 
 def count(line: tp.Iterable[str]) -> int:
     line = "".join(line)
     return line.count("XMAS") + line.count("SAMX")
 
 
-def task1() -> int:
-    arr = np.array([list(line.strip()) for line in utils.read_lines()])
+def task1(filename: str = FILENAME) -> int:
+    arr = np.array([list(line.strip()) for line in utils.read_lines(filename)])
     res = 0
 
     # rows and columns
@@ -36,8 +38,8 @@ def task1() -> int:
 X_MAS = ["MAS", "SAM"]
 
 
-def task2() -> int:
-    arr = np.array([list(line.strip()) for line in utils.read_lines()])
+def task2(filename: str = FILENAME) -> int:
+    arr = np.array([list(line.strip()) for line in utils.read_lines(filename)])
     res = 0
 
     max_x, max_y = len(arr[0]), len(arr)

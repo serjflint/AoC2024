@@ -1,4 +1,4 @@
-from src.day11 import tasks
+from src import day11 as tasks
 
 if __name__ == "__main__":
-    print(tasks.task2("src/day11/input.txt"))
+    print(tasks.task2())

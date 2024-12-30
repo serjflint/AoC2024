@@ -3,6 +3,8 @@ import itertools as it
 
 from src.common import utils
 
+FILENAME = utils.with_suffix(__file__)
+
 
 def get_freq(arr: list[list[str]]) -> dict[str, list[tuple[int, int]]]:
     max_x, max_y = len(arr[0]), len(arr)
@@ -16,8 +18,8 @@ def get_freq(arr: list[list[str]]) -> dict[str, list[tuple[int, int]]]:
     return frequencies
 
 
-def task1() -> int:
-    lines = [list(line.strip()) for line in utils.read_lines()]
+def task1(filename: str = FILENAME) -> int:
+    lines = [list(line.strip()) for line in utils.read_lines(filename)]
     max_x, max_y = len(lines[0]), len(lines)
     frequencies = get_freq(lines)
 
@@ -32,8 +34,8 @@ def task1() -> int:
     return sum(1 for _ in utils.where(antinodes, "#"))
 
 
-def task2() -> int:
-    lines = [list(line.strip()) for line in utils.read_lines()]
+def task2(filename: str = FILENAME) -> int:
+    lines = [list(line.strip()) for line in utils.read_lines(filename)]
     max_x, max_y = len(lines[0]), len(lines)
     frequencies = get_freq(lines)
 
@@ -53,5 +55,6 @@ def task2() -> int:
 
 
 if __name__ == "__main__":
+    print(FILENAME)
     print(task1())
     print(task2())

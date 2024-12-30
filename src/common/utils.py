@@ -66,3 +66,8 @@ def where(arr: list[list[_T]], val: _T) -> tp.Iterator[tuple[int, int]]:
         for y in range(max_y):
             if arr[y][x] == val:
                 yield x, y
+
+
+def with_suffix(file: str, suffix: str = ".txt") -> str:
+    path = pathlib.Path(file).with_suffix(suffix)
+    return str(path)

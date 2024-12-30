@@ -5,6 +5,8 @@ import typing as tp
 
 from src.common import utils
 
+FILENAME = utils.with_suffix(__file__)
+
 
 def stone_blink(val: int) -> tp.Collection[int]:
     if val == 0:
@@ -37,6 +39,7 @@ def blink(stones: list[int]) -> list[int]:
 
 
 def counter_blink(counter: collections.Counter) -> collections.Counter:
+    """Account for many of one-digit stones"""
     new_counter = collections.defaultdict(int)
     for val, c in counter.items():
         for new_val in stone_blink(val):
@@ -44,7 +47,7 @@ def counter_blink(counter: collections.Counter) -> collections.Counter:
     return collections.Counter(new_counter)
 
 
-def task1(filename: str = "input.txt") -> int:
+def task1(filename: str = FILENAME) -> int:
     data = utils.read_text(filename)
     stones = utils.to_ints(data)
     for _ in range(25):
@@ -52,7 +55,7 @@ def task1(filename: str = "input.txt") -> int:
     return len(stones)
 
 
-def task2(filename: str = "input.txt") -> int:
+def task2(filename: str = FILENAME) -> int:
     data = utils.read_text(filename)
     counter = collections.Counter(utils.to_ints(data))
     for _ in range(75):

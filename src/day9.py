@@ -2,6 +2,8 @@ import msgspec
 
 from src.common import utils
 
+FILENAME = utils.with_suffix(__file__)
+
 
 def index(lst: list[int], value: int | None, start: int = 0) -> int:
     for idx in range(start, len(lst)):
@@ -19,8 +21,8 @@ def rindex(lst: list[int], value: int | None, start: int | None = None) -> int:
     return -1
 
 
-def task1() -> int:
-    cd = utils.read_text().strip()
+def task1(filename: str = FILENAME) -> int:
+    cd = utils.read_text(filename).strip()
     disk = []
     for idx, size in enumerate(cd):
         if idx % 2 == 0:
@@ -45,8 +47,8 @@ class File(msgspec.Struct):
     pos: int
 
 
-def task2() -> int:
-    cd = utils.read_text().strip()
+def task2(filename: str = FILENAME) -> int:
+    cd = utils.read_text(filename).strip()
     disk, free = [], []
     pos = 0
     for idx, size in enumerate(cd):

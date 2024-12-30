@@ -1,11 +1,14 @@
 from src.common import utils
 
-def task1(filename: str = "input.txt") -> int:
+FILENAME = utils.with_suffix(__file__)
+
+
+def task1(filename: str = FILENAME) -> int:
     data = utils.read_text(filename)
     return len(data)
 
 
-def task2(filename: str = "input.txt") -> int:
+def task2(filename: str = FILENAME) -> int:
     data = utils.read_text(filename)
     return len(data)
 

@@ -1,6 +1,6 @@
 import pytest
 
-from src.day import tasks
+from src import day as tasks
 
 
 @pytest.mark.parametrize(

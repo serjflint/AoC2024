@@ -1,6 +1,6 @@
 import pytest
 
-from src.day10 import tasks
+from src import day10 as tasks
 
 
 @pytest.mark.parametrize(
@@ -20,7 +20,7 @@ def test_task1(file: str, expected_res: int) -> None:
     ("file", "expected_res"),
     [
         pytest.param("simple_rating.txt", 3, id="simple_rating"),
-        pytest.param("complex_rating.txt", 13, id="complex_rating"),
+        pytest.param("complex_trail.txt", 13, id="complex_trail"),
         pytest.param("huge_rating.txt", 227, id="huge_rating"),
         pytest.param("larger_example.txt", 81, id="larger_example"),
     ],

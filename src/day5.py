@@ -3,6 +3,8 @@ import itertools
 
 from src.common import utils
 
+FILENAME = utils.with_suffix(__file__)
+
 
 def parse(lines: list[str]) -> tuple[dict[int, set[int]], list[list[int]]]:
     rules: dict[int, set[int]] = collections.defaultdict(set)
@@ -35,8 +37,8 @@ def is_ordered(update: list[int], rules: dict[int, set[int]]) -> bool:
     return True
 
 
-def task1() -> int:
-    rules, updates = parse(utils.read_lines())
+def task1(filename: str = FILENAME) -> int:
+    rules, updates = parse(utils.read_lines(filename))
     res = 0
     for update in updates:
         if is_ordered(update, rules):
@@ -45,8 +47,8 @@ def task1() -> int:
     return res
 
 
-def task2() -> int:
-    rules, updates = parse(utils.read_lines())
+def task2(filename: str = FILENAME) -> int:
+    rules, updates = parse(utils.read_lines(filename))
     res = 0
     for update in updates:
         if is_ordered(update, rules):

@@ -2,12 +2,14 @@ import re
 
 from src.common import utils
 
+FILENAME = utils.with_suffix(__file__)
+
 # "mul(123, 456)" -> ("123", "456")
 MUL_OP = re.compile(r"mul\((\d{1,3}),(\d{1,3})\)")
 
 
-def task1() -> int:
-    instructions = utils.read_text()
+def task1(filename: str = FILENAME) -> int:
+    instructions = utils.read_text(filename)
     res = 0
     for m in MUL_OP.finditer(instructions):
         a, b = int(m.group(1)), int(m.group(2))
@@ -20,8 +22,8 @@ def task1() -> int:
 COND_OP = re.compile(r"do\(\)|don\'t\(\)|mul\((\d{1,3}),(\d{1,3})\)")
 
 
-def task2() -> int:
-    instructions = utils.read_text()
+def task2(filename: str = FILENAME) -> int:
+    instructions = utils.read_text(filename)
     res = 0
     do_flag = True
     for m in COND_OP.finditer(instructions):

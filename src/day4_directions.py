@@ -4,12 +4,14 @@ import itertools as it
 
 from src.common import utils
 
+FILENAME = utils.with_suffix(__file__)
+
 DIRECTIONS = [d for d in it.product((-1, 0, 1), repeat=2) if d != (0, 0)]
 XMAS = "XMAS"
 
 
-def task1() -> int:
-    field = utils.read_lines()
+def task1(filename: str = FILENAME) -> int:
+    field = utils.read_lines(filename)
     res = 0
     max_x, max_y = len(field[0]), len(field)
     for pos_x, pos_y in it.product(range(max_x), range(max_y)):
@@ -28,8 +30,8 @@ def task1() -> int:
 SLASHES = [[(-1, -1), (1, 1)], [(-1, 1), (1, -1)]]
 
 
-def task2() -> int:
-    field = utils.read_lines()
+def task2(filename: str = FILENAME) -> int:
+    field = utils.read_lines(filename)
     res = 0
     max_x, max_y = len(field[0]), len(field)
     for pos_x, pos_y in it.product(range(1, max_x - 1), range(1, max_y - 1)):

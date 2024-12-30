@@ -5,6 +5,8 @@ from tqdm import tqdm
 
 from src.common import utils
 
+FILENAME = utils.with_suffix(__file__)
+
 MASKS = [(0, -1), (1, 0), (0, 1), (-1, 0)]
 
 
@@ -24,7 +26,7 @@ def gen_steps(arr: list[list[str]], pos: tuple[int, int]) -> tp.Iterator[tuple[i
         x, y = new_x, new_y
 
 
-def task1(filename: str = "input.txt") -> int:
+def task1(filename: str = FILENAME) -> int:
     arr = [list(line.strip()) for line in utils.read_lines(filename)]
     pos_x, pos_y = next(utils.where(arr, "^"))
 
@@ -37,7 +39,7 @@ def task1(filename: str = "input.txt") -> int:
 CYCLE_COUNTER = 4
 
 
-def task2(filename: str = "input.txt") -> int:
+def task2(filename: str = FILENAME) -> int:
     arr = [list(line.strip()) for line in utils.read_lines(filename)]
     pos_x, pos_y = next(utils.where(arr, "^"))
 

@@ -2,6 +2,8 @@ import typing as tp
 
 from src.common import utils
 
+FILENAME = utils.with_suffix(__file__)
+
 MASKS = [
     [(0, 0), (-1, -1), (-2, -2), (-3, -3)],  # top-left
     [(0, 0), (0, -1), (0, -2), (0, -3)],  # top
@@ -34,8 +36,8 @@ def yield_xmas(field: list[str], pos: tuple[int, int]) -> tp.Iterator[str]:
             yield WORD
 
 
-def task1() -> int:
-    field = utils.read_lines()
+def task1(filename: str = FILENAME) -> int:
+    field = utils.read_lines(filename)
     res = 0
     for pos_y in range(len(field)):
         for pos_x in range(len(field[pos_y])):
@@ -64,8 +66,8 @@ def yield_x_mas(field: list[str], pos: tuple[int, int]) -> tp.Iterator[str]:
             yield WORD_X_MAS
 
 
-def task2() -> int:
-    field = utils.read_lines()
+def task2(filename: str = FILENAME) -> int:
+    field = utils.read_lines(filename)
     res = 0
     for pos_y in range(len(field)):
         for pos_x in range(len(field[pos_y])):

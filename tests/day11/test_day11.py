@@ -1,7 +1,7 @@
 import pytest
 
+from src import day11 as tasks
 from src.common import utils
-from src.day11 import tasks
 
 
 @pytest.mark.parametrize(

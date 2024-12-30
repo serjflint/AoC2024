@@ -2,6 +2,8 @@ import typing as tp
 
 from src.common import utils
 
+FILENAME = utils.with_suffix(__file__)
+
 DIRS = [(0, -1), (1, 0), (0, 1), (-1, 0)]
 
 
@@ -35,7 +37,7 @@ def uphill_slope(field: list[list[int]], prev: tuple[int, int], curr: tuple[int,
     return prev_val + 1 == curr_val
 
 
-def task1(filename: str = "input.txt") -> int:
+def task1(filename: str = FILENAME) -> int:
     field = utils.read_lists_opt(filename)
 
     res = 0
@@ -48,7 +50,7 @@ def task1(filename: str = "input.txt") -> int:
     return res
 
 
-def task2(filename: str = "input.txt") -> int:
+def task2(filename: str = FILENAME) -> int:
     field = utils.read_lists_opt(filename)
 
     res = 0

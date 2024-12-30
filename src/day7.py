@@ -2,6 +2,8 @@ import itertools as it
 
 from src.common import utils
 
+FILENAME = utils.with_suffix(__file__)
+
 
 def read_test(line: str) -> tuple[int, list[int]]:
     left, right = line.split(":")
@@ -10,8 +12,8 @@ def read_test(line: str) -> tuple[int, list[int]]:
     return test, args
 
 
-def task1() -> int:
-    lines = utils.read_lines()
+def task1(filename: str = FILENAME) -> int:
+    lines = utils.read_lines(filename)
     res = 0
     for line in lines:
         test, args = read_test(line)
@@ -28,8 +30,8 @@ def task1() -> int:
     return res
 
 
-def task2() -> int:
-    lines = utils.read_lines()
+def task2(filename: str = FILENAME) -> int:
+    lines = utils.read_lines(filename)
     res = 0
     for line in lines:
         test, args = read_test(line)
