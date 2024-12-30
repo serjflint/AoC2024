@@ -24,9 +24,22 @@ def read_lists(filename: str = "input.txt") -> list[list[int]]:
     res = []
     with pathlib.Path(filename).open(encoding="utf-8") as stream:
         for line in stream:
+            line = line.strip()  # noqa: PLW2901
             if not line:
                 continue
-            row = [int(val) for val in line.strip().split()]
+            row = [int(val) for val in line.split()]
+            res.append(row)
+    return res
+
+
+def read_lists_opt(filename: str = "input.txt", *, fill: str = ".") -> list[list[int | None]]:
+    res = []
+    with pathlib.Path(filename).open(encoding="utf-8") as stream:
+        for line in stream:
+            line = line.strip()  # noqa: PLW2901
+            if not line:
+                continue
+            row = [(int(val) if val != fill else None) for val in list(line)]
             res.append(row)
     return res
 
