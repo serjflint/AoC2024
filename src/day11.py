@@ -39,7 +39,7 @@ def blink(stones: list[int]) -> list[int]:
 
 
 def counter_blink(counter: collections.Counter) -> collections.Counter:
-    """Account for many of one-digit stones"""
+    """Account for many of one-digit stones."""  # noqa: DOC201
     new_counter = collections.defaultdict(int)
     for val, c in counter.items():
         for new_val in stone_blink(val):

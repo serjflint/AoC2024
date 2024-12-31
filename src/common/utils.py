@@ -71,3 +71,25 @@ def where(arr: list[list[_T]], val: _T) -> tp.Iterator[tuple[int, int]]:
 def with_suffix(file: str, suffix: str = ".txt") -> str:
     path = pathlib.Path(file).with_suffix(suffix)
     return str(path)
+
+
+DIRS = [(0, -1), (1, 0), (0, 1), (-1, 0)]
+TPoint = tuple[int, int]
+
+
+def bfs(
+    field: tp.Sequence[tp.Sequence[tp.Any]], pos: TPoint, cond: tp.Callable, *, check_seen: bool = False
+) -> tp.Iterator[TPoint]:
+    max_x, max_y = len(field[0]), len(field)
+    buffer = [pos]
+    seen = set()
+    while buffer:
+        prev = x, y = buffer.pop()
+        for dir_x, dir_y in DIRS:
+            curr = new_x, new_y = x + dir_x, y + dir_y
+            if check_seen and curr in seen:
+                continue
+            if 0 <= new_x < max_x and 0 <= new_y < max_y and cond(field, prev, curr):
+                buffer.append(curr)
+                seen.add(curr)
+                yield curr
