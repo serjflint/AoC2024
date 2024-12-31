@@ -5,14 +5,14 @@ from src.common import utils
 FILENAME = utils.with_suffix(__file__)
 
 
-def index(lst: list[int], value: int | None, start: int = 0) -> int:
+def index(lst: list[int | None], value: int | None, start: int = 0) -> int:
     for idx in range(start, len(lst)):
         if lst[idx] == value:
             return idx
     return -1
 
 
-def rindex(lst: list[int], value: int | None, start: int | None = None) -> int:
+def rindex(lst: list[int | None], value: int | None, start: int | None = None) -> int:
     if start is None:
         start = len(lst) - 1
     for idx in range(start, -1, -1):
@@ -23,7 +23,7 @@ def rindex(lst: list[int], value: int | None, start: int | None = None) -> int:
 
 def task1(filename: str = FILENAME) -> int:
     cd = utils.read_text(filename).strip()
-    disk = []
+    disk: list[int | None] = []
     for idx, size in enumerate(cd):
         if idx % 2 == 0:
             disk.extend([idx // 2] * int(size))
@@ -49,7 +49,8 @@ class File(msgspec.Struct):
 
 def task2(filename: str = FILENAME) -> int:
     cd = utils.read_text(filename).strip()
-    disk, free = [], []
+    disk: list[File] = []
+    free: list[File] = []
     pos = 0
     for idx, size in enumerate(cd):
         store = disk if idx % 2 == 0 else free

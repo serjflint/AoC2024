@@ -32,7 +32,7 @@ def fast_blink(val: int) -> tp.Collection[int]:
 
 
 def blink(stones: list[int]) -> list[int]:
-    new_stones = []
+    new_stones: list[int] = []
     for val in stones:
         new_stones.extend(fast_blink(val))
     return new_stones
@@ -40,7 +40,7 @@ def blink(stones: list[int]) -> list[int]:
 
 def counter_blink(counter: collections.Counter) -> collections.Counter:
     """Account for many of one-digit stones."""  # noqa: DOC201
-    new_counter = collections.defaultdict(int)
+    new_counter: dict[int, int] = collections.defaultdict(int)
     for val, c in counter.items():
         for new_val in stone_blink(val):
             new_counter[new_val] += c

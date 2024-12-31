@@ -16,8 +16,8 @@ def task1(filename: str = FILENAME) -> int:
     field = [list(line.strip()) for line in data]
     regions = get_regions(field)
 
-    areas = collections.defaultdict(int)
-    perimeters = collections.defaultdict(int)
+    areas: dict[int, int] = collections.defaultdict(int)
+    perimeters: dict[int, int] = collections.defaultdict(int)
     for y, row in enumerate(field):
         for x, ch in enumerate(row):
             p = x, y
@@ -35,7 +35,7 @@ def task2(filename: str = FILENAME) -> int:
     field = [list(line.strip()) for line in data]
     regions = get_regions(field)
 
-    areas = collections.defaultdict(int)
+    areas: dict[int, int] = collections.defaultdict(int)
     perimeters: dict[int, list[TFence]] = collections.defaultdict(list)
     for y, row in enumerate(field):
         for x, ch in enumerate(row):
@@ -46,7 +46,7 @@ def task2(filename: str = FILENAME) -> int:
             for fence in get_fences(field, p, ch):
                 perimeters[idx].append(fence)
 
-    sides = collections.defaultdict(int)
+    sides: dict[int, int] = collections.defaultdict(int)
     for idx, perimeter in perimeters.items():
         distinct_sides = get_distinct_sides(grow_sides(perimeter))
         sides[idx] = len(distinct_sides)
@@ -89,7 +89,7 @@ def get_fences(field: TField, p: utils.TPoint, ch: str) -> tp.Iterator[TFence]:
 
 
 def grow_sides(perimeter: list[TFence]) -> list[TSide]:
-    sides = []
+    sides: list[TSide] = []
     for fence in perimeter:
         found = False
         for side in sides:
@@ -113,7 +113,7 @@ def get_neighbors(fence: TFence) -> tp.Iterator[TFence]:
 
 
 def get_distinct_sides(sides: list[TSide]) -> list[TSide]:
-    distinct_sides = []
+    distinct_sides: list[TSide] = []
     for raw_side in sides:
         for d_side in distinct_sides:
             if d_side & raw_side:
